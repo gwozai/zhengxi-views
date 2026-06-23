@@ -10,7 +10,7 @@
 ![类型](https://img.shields.io/badge/类型-Agent%20Skill-black)
 ![数据](https://img.shields.io/badge/数据-真实公开披露-success)
 ![基金](https://img.shields.io/badge/覆盖-全市场%202.7万只-orange)
-![平台](https://img.shields.io/badge/平台-Claude%20·%20WorkBuddy%20·%20ChatGPT%20·%20Gemini%20·%20Cursor-7c3aed)
+![平台](https://img.shields.io/badge/平台-Claude%20·%20WorkBuddy%20·%20ima%20·%20ChatGPT%20·%20Gemini%20·%20Cursor-7c3aed)
 
 [安装](#install) · [它能做什么](#features) · [在其他 AI 里用](#other-ai) · [目录结构](#structure) · [数据来源](#sources) · [边界](#limits)
 
@@ -222,6 +222,8 @@ skill 会运行 python 脚本。Claude Code 默认每次运行都要确认。想
 | 全市场任意基金实时抓取 / 评分 | Python + 联网 | ✅ | ✅ | ✅ | ⚠️ | ⚠️ | ❌ |
 
 > 腾讯 **WorkBuddy** 本地运行、能跑脚本联网，因此可用**全部功能**（含实时抓取）；它用 `skill.yml` 作清单，本仓库已附一份，详见 [腾讯 WorkBuddy](#腾讯-workbuddy)。
+>
+> 腾讯 **ima**（知识库）只读不跑脚本，支持问答/方法/点评/郑希自带基金数据，不支持实时抓取，详见 [腾讯 ima](#ima)。
 
 > ⚠️ = 沙箱通常**无外网**，实时抓取多半失败；但可以在本地先用 `fetch_any_fund.py` 把目标基金抓好，再把生成的数据文件一起上传，离线评分照常进行。
 
@@ -259,6 +261,17 @@ WorkBuddy 是本地运行的 AI 工作台，自定义 Skill 约定为 **`skill.y
 1. 新建一个 Gem。
 2. 指令栏粘贴 `SKILL.md` 正文；知识栏上传 `method.md`、`scorecard.md`、`corpus/`、`fund_data/`。
 3. 主要支持读类功能（问答 / 方法 / 点评 / 已打包数据对照）；无代码 + 外网，实时抓取与脚本评分请在本地跑好再带结果提问。
+
+<a id="ima"></a>
+### 腾讯 ima（ima.copilot 知识库 · 纯问答）
+
+ima 是知识库 / RAG 问答应用，**不跑脚本、不联网**，所以只支持"读类"功能：溯源问答、方法讲解、风格点评、郑希 8 只基金言行对照；**全市场实时抓取与评分用不了**。
+
+1. 在 ima 新建一个知识库（例如"郑希观点库"）。
+2. 上传 `references/` 里的资料：`corpus/`（语料）、`method.md`、`scorecard.md`、`fund_data/`（郑希基金数据）。ima 支持整文件夹上传；若不接受 `.md`，先转成 PDF / DOCX / TXT 再传。
+3. 配置一个"智能体"，把 `SKILL.md` 的行为约束作为它的提示词：可溯源、引用忠于原文、原话与推演分开、语料外话题首句加粗声明非郑希本人观点、研究学习辅助非投资建议。
+4. 选中该知识库提问，如"郑希怎么看光通信""郑希的投资方法是什么"。
+5. 想要某只全市场基金的数据？先在本地用 `fetch_any_fund.py` 抓好，把生成的 `.md` 传进知识库，再让 ima 基于它回答。
 
 ### Claude.ai（网页 / 桌面）
 
