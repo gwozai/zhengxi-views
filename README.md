@@ -12,7 +12,7 @@
 ![基金](https://img.shields.io/badge/覆盖-全市场%202.7万只-orange)
 ![平台](https://img.shields.io/badge/平台-Claude%20·%20WorkBuddy%20·%20ima%20·%20ChatGPT%20·%20Gemini%20·%20Cursor-7c3aed)
 
-[安装](#install) · [它能做什么](#features) · [在其他 AI 里用](#other-ai) · [目录结构](#structure) · [数据来源](#sources) · [边界](#limits)
+[安装](#install) · [它能做什么](#features) · [推荐用法](#recommended-usage) · [在其他 AI 里用](#other-ai) · [目录结构](#structure) · [数据来源](#sources) · [边界](#limits)
 
 </div>
 
@@ -40,6 +40,33 @@
 | 言行对照 / 查业绩持仓 | `郑希说看好光通信，持仓真印证了吗？业绩如何？` | 把语料里的表态和真实逐季持仓对照，并给净值/收益/回撤等真实数据 |
 | 查 / 对比全市场任意基金 | `把郑希和葛兰的中欧医疗比一比` | 全市场 2.7 万只里查代码 → 实时抓取 → 与郑希的基金并列对比 |
 | 用郑希框架给基金打分 | `用郑希的标准给招商中证白酒打个分，他会买吗？` | 一条命令备好数据，按六维评分卡给总分/评级/理由（衡量"多像郑希会买的"，非基金优劣） |
+
+<a id="recommended-usage"></a>
+## ⭐ 推荐用法
+
+把腾讯 **WorkBuddy**、`zhengxi-views` skill 和 **MCP** 接起来后，可以把它做成一个交易日自动化研究助手：在每个交易日按固定时间触发，自动读取市场行情、基金/持仓数据、财报与产业新闻，再用郑希的方法框架生成结构化分析报告，并通过邮件 MCP 推送到指定邮箱。
+
+一个典型流程是：
+
+1. 在 WorkBuddy 里启用 `zhengxi-views` skill，并配置可调用的 MCP 连接器，例如行情/资讯数据源、TDX 数据连接器、QQ 邮箱或企业邮箱连接器。
+2. 建立交易日定时任务，例如工作日盘前、盘后或财报密集期定时执行。
+3. 让任务按固定链路采集指数、ETF、个股/基金、产业新闻、公司财报和郑希原文/方法论材料。
+4. 用 skill 的溯源约束和方法框架生成日报、财报解读、热点板块分析、持仓验证和郑希视角推演。
+5. 将 HTML 或 Markdown 报告通过邮件 MCP 自动发送到自己或团队邮箱，沉淀为可复盘的交易日研究流水线。
+
+下面是 WorkBuddy 自动化配置和邮件报告效果示例：
+
+![WorkBuddy 自动化任务配置](assets/recommended-usage/01-workbuddy-automation-config.jpg)
+
+![每日全球科技行情分析报告](assets/recommended-usage/02-daily-tech-market-report.jpg)
+
+![热点报告聚合与摘要](assets/recommended-usage/03-hot-reports.jpg)
+
+![黄金与关键事件分析](assets/recommended-usage/04-gold-section.jpg)
+
+![郑希视角分析](assets/recommended-usage/05-zhengxi-view-analysis.jpg)
+
+![按郑希方法框架推演](assets/recommended-usage/06-method-deduction.jpg)
 
 ## 💬 示例 · 看看它怎么答
 
